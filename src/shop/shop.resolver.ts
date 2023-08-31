@@ -14,7 +14,7 @@ export class ShopResolver {
     return this.shopService.create(createShopInput);
   }
 
-  @Query(() => [Shop], { name: 'shops' })
+  @Query(() => [Shop], { name: 'shops'})
   findAll() {
     return this.shopService.findAll();
   }
@@ -33,12 +33,10 @@ export class ShopResolver {
   removeShop(@Args('id', { type: () => Int }) id: number) {
     return this.shopService.remove(id);
   }
-
   @ResolveField(()=>[Product],{name:'products'})
   getproducts(@Parent() shop:Shop):Promise<Product[]>{
     return this.shopService.getproducts(shop.id);
   }
-
 
 
 }

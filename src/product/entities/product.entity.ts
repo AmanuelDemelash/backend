@@ -1,4 +1,5 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
+import { type } from 'os';
 import { Shop } from 'src/shop/entities/shop.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -17,6 +18,10 @@ export class Product {
   @Column()
   @Field()
   description:string;
+
+  @Column()
+  @Field(type=>Float,{nullable:false,defaultValue:0.0})
+  price:number
 
   @Column()
   @Field(type => Int, { nullable: true, defaultValue:0})

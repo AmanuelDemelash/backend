@@ -13,6 +13,7 @@ type Product {
   id: Int!
   title: String!
   description: String!
+  price: Float!
   likes: Int
   shopids: Int!
   shop: Shop
@@ -38,6 +39,7 @@ input CreateProductInput {
   title: String!
   description: String!
   likes: Int = 0
+  price: Float! = 0
   shopids: Int!
 }
 
@@ -45,6 +47,7 @@ input UpdateProductInput {
   title: String!
   description: String!
   likes: Int = 0
+  price: Float! = 0
   shopids: Int
   id: Int!
 }
