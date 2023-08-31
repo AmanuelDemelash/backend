@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { CreateProductInput } from './dto/create-product.input';
 import { UpdateProductInput } from './dto/update-product.input';
 import { Product } from './entities/product.entity';
@@ -10,9 +10,9 @@ import { Shop } from 'src/shop/entities/shop.entity';
 
 @Injectable()
 export class ProductService {
-  constructor(
+  constructor(@Inject(forwardRef(()=>ShopService)) private readonly shopService:ShopService,
     @InjectRepository(Product)
-    private usersRepository: Repository<Product>, private shopService:ShopService
+    private usersRepository: Repository<Product>
   ) {}
   
   create(createProductInput: CreateProductInput) {
@@ -46,7 +46,7 @@ export class ProductService {
     return this.shopService.findOne(shopid);
   }
 
-  getproducts(id:number):Promise<Product[]>{
-   return this.usersRepository.find({where:{id}})
-  }
+  getproductsbyShopid(id:number):Promise<Product[]>{
+    return this.usersRepository.find({where:{shopids:id}})
+   }
 }

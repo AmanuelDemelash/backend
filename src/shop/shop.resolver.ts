@@ -1,9 +1,8 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nestjs/graphql';
 import { ShopService } from './shop.service';
 import { Shop } from './entities/shop.entity';
 import { CreateShopInput } from './dto/create-shop.input';
 import { UpdateShopInput } from './dto/update-shop.input';
-import { ProductService } from 'src/product/product.service';
 import { Product } from 'src/product/entities/product.entity';
 
 @Resolver(() => Shop)
@@ -35,11 +34,11 @@ export class ShopResolver {
     return this.shopService.remove(id);
   }
 
-  @ResolveField(()=>[Product])
+  @ResolveField(()=>[Product],{name:'products'})
   getproducts(@Parent() shop:Shop):Promise<Product[]>{
     return this.shopService.getproducts(shop.id);
-
   }
+
 
 
 }

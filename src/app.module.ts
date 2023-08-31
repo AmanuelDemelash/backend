@@ -26,7 +26,8 @@ import { Shop } from './shop/entities/shop.entity';
       database: 'test',
       entities: [Product,Shop],
       synchronize: true,
-      autoLoadEntities:true
+      autoLoadEntities:true,
+    
     }),
     ProductModule,
     ShopModule,
