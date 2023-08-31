@@ -8,7 +8,7 @@ import { ProductService } from 'src/product/product.service';
 
 @Injectable()
 export class ShopService {
-constructor( @InjectRepository(Shop) private shopRepository:Repository<Shop>,private readonly ProductServic:ProductService){}
+constructor(@InjectRepository(Shop) private shopRepository:Repository<Shop>,private readonly ProductServic:ProductService){}
 
   create(createShopInput: CreateShopInput) {
      try{

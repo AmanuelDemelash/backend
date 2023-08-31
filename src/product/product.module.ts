@@ -7,7 +7,7 @@ import { ShopService } from 'src/shop/shop.service';
 import { ShopModule } from 'src/shop/shop.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Product]),ShopModule],
+  imports:[forwardRef(()=>ShopModule),TypeOrmModule.forFeature([Product])],
   providers: [ProductResolver, ProductService],
   exports:[ProductService]
 })
